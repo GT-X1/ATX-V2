@@ -19,7 +19,7 @@ const { color, bgcolor } = require('./lib/color')
 const { bahasa } = require('./src/bahasa')
 const { negara } = require('./src/kodenegara')
 
-const { wait, pegatinas, musica, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
+const { wait, pegatinas, musica, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
 const { fetchJson } = require('./lib/fetcher')
 const { recognize } = require('./lib/ocr')
 /******FIN DE ENTRADA DE ARCHIVO******/
@@ -39,9 +39,21 @@ const { removeBackgroundFromImageFile } = require('remove.bg')
 const imgbb = require('imgbb-uploader')
 
 const speed = require('performance-now')
+
+
+
 /******FIN DE ENTRADA DEL PAQUETE NPM******/
 
 
+const welkom = JSON.parse(fs.readFileSync('./database/json/welkom.json'))
+const nsfw = JSON.parse(fs.readFileSync('./database/json/nsfw.json'))
+
+const user = JSON.parse(fs.readFileSync('./database/json/user.json'))
+const _leveling = JSON.parse(fs.readFileSync('./database/json/leveling.json'))
+const _level = JSON.parse(fs.readFileSync('./database/json/level.json'))
+
+
+/******FIN DE ENTRADA JSON******/
 
 /******COMIENZO DE LA ENTRADA JSON******/
 
