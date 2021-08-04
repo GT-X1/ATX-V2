@@ -1,0 +1,1 @@
+const apps= (prefix, pushname) => {    return `*APPS*https://youtu.be/Eozb8Wy2pjA4APPS UTILES:"IDE"1- https://play.google.com/store/apps/details?id=com.foxdebug.acodefreeAN WHATSAPP:1- https://www.smart5hone.com/2018/04/download-anwhatsapp-anwhatsapp.html?m=1\nву ATX`}exports.apps= apps
