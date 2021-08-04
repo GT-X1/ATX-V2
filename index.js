@@ -48,10 +48,6 @@ const speed = require('performance-now')
 const welkom = JSON.parse(fs.readFileSync('./database/json/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./database/json/nsfw.json'))
 
-const user = JSON.parse(fs.readFileSync('./database/json/user.json'))
-const _leveling = JSON.parse(fs.readFileSync('./database/json/leveling.json'))
-const _level = JSON.parse(fs.readFileSync('./database/json/level.json'))
-
 
 /******FIN DE ENTRADA JSON******/
 
