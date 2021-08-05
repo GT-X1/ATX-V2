@@ -3,8 +3,9 @@ const help = (prefix) => {
 
 ☆ *INFORMACION*
    ⭑ Cᵒᵐᵃᶰᵈᵒ: ⌜ ${prefix} ⌟
+   ⭑ Aᵖᵖ: https://App.ATX@is.gd/VrtzXT
    ⭑ Cʳᵉᵃᵈᵒʳ: ATX 
-   ⭑ https://youtu.be/Eozb8Wy2pjA4
+   ⭑ https://ATX-Main@is.gd/5yk050
    ⭑ *PARA USAR EL BOT* Rᵉᵍᶤˢᵗʳᵃᵗᵉ ᶜᵒᶰ ᵉˡ ᶜᵒᵐᵃᶰᵈᵒ ${prefix}ᵈᵃᶠᵗᵃʳ ʸ ᵗᵘ ᶰᵒᵐᵇʳᵉ
 
 
