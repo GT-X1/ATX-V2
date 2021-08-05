@@ -1,7 +1,5 @@
 const help = (prefix) => {
-	return `
-
-⌜ *ATX by 에이퀴즈* ⌟  
+	return `li.⌜ ATX by 에이퀴즈 ⌟.il
 
 ☆ *INFORMACION*
    ⭑ Cᵒᵐᵃᶰᵈᵒ: ⌜ ${prefix} ⌟
