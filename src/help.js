@@ -57,18 +57,10 @@ const help = (prefix) => {
   ⎢ ⭑ ${prefix}ˡᶤˢᵗᵃᵈᵐᶤᶰˢ (Nᵒᵐᵇʳᵃʳ ᵃ ˡᵒˢ ᵃᵈᵐᶤᶰ)
   ⎣ ⭑ ${prefix}ᵗᵒᵈᵒˢ (Nᵒᵐᵇʳᵃ ᵃ ᵗᵒᵈᵒˢ ˡᵒˢ ᵈᵉˡ ᵍʳᵘᵖᵒ)
 
-Para usar estas funciones el bot necesita admin
-  
-☆ *NSWF* 
-  ⎡
-  ⎣ ⭑ ${prefix}ᶰˢᶠʷᵐᵉᶰᵘ
-
-Pᵃʳᵃ ᵃᶜᵗᶤᵛᵃʳ ˡᵒˢ NSFW ᶜᵒˡᵒᵠᵘᵉ ᵉˡ ˢᶤᵍᵘᶤᵉᶰᵗᵉ ᶜᵒᵐᵃᶰᵈᵒ ${prefix}ᶰˢᶠʷ 1 ʸ ᵖᵃʳᵃ ᵈᵉˢᵃᶜᵗᶤᵛᵃʳ ˡᵒˢ NSFW ᶜᵒˡᵒᵠᵘᵉ ${prefix}ᶰˢᶠʷ 0
-
 
 ву ATX
 
-⌜ *에이퀴즈* ⌟ 
+li.⌜ 에이퀴즈 ⌟.il 
 `
 }
 
