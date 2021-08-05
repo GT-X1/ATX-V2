@@ -1,5 +1,6 @@
 const help = (prefix) => {
-	return `li.⌜ ATX by 에이퀴즈 ⌟.il
+	return `
+li.⌜ ATX by 에이퀴즈 ⌟.il
 
 ☆ *INFORMACION*
    ⭑ Cᵒᵐᵃᶰᵈᵒ: ⌜ ${prefix} ⌟
@@ -13,6 +14,8 @@ const help = (prefix) => {
   ⎡
   ⎢ ⭑ ${prefix}Vᵉʳˢᶤᵒᶰ (Cᵒᶰᵒᶜᵉ ˡᵃ ᵛᵉʳˢᶤᵒᶰ ᵈᵉ ᵗᵘ ᵇᵒᵗ)
   ⎣ ⭑ ${prefix}ᶜʳᵉᵃᵈᵒʳ (Dᵘᵈᵃˢ ᵒ ᵖʳᵒᵇˡᵉᵐᵃˢ ᵃᵠᵘᶤ)
+  ⎢ ⭑ ${prefix}ʷᵃᵐᵉ (Lᶤᶰᵏ ᵈᵉ Wʰᵃᵗˢᵃᵖᵖ)
+  ⎣ ⭑ ${prefix}ᵠʳᶜᵒᵈᵉ (Cᵒˡᵒᶜᵃ ᵘᶰ ᵗᵉˣᵗᵒ)
   
   ☆ *ATX CASE*
   ⎡
@@ -35,14 +38,6 @@ const help = (prefix) => {
   ⎡
   ⎢ ⭑ ${prefix}ᶤᵈᶤᵒᵐᵃ
   ⎣ ⭑ ${prefix}ᵗᵗˢ ᵉˢ (ᵐᵃˢ ᵗᵉˣᵗᵒ)
-
-☆ *OTROS*
-  ⎡
-  ⎢ ⭑ ${prefix}ʷᵃᵐᵉ (Lᶤᶰᵏ ᵈᵉ Wʰᵃᵗˢᵃᵖᵖ)
-  ⎢ ⭑ ${prefix}ᵠʳᶜᵒᵈᵉ (Cᵒˡᵒᶜᵃ ᵘᶰ ᵗᵉˣᵗᵒ)
-  ⎢ ⭑ ${prefix}ᵒᵗᵃᵏ (Mᵒᶰᵃˢ ᶜʰᶤᶰᵃˢ)
-  ⎢ ⭑ ${prefix}ˢʰᵃᶰᵗᵉʳᵃ (Iᶰᵗᵉʳᵃᶜᵗᵘᵃ ᶜᵒᶰ ᵉˡ ᵇᵒᵗ)) 
-  ⎣ ⭑ ${prefix}ʲᵘᵉᵍᵒˢ (Dᶤᵛᶤᵉʳᵗᵉ ᶜᵒᶰ ᵗᵘˢ ᵃᵐᶤᵍᵒˢ :))
 
 ☆ *GRUPOS*
   ⎡
