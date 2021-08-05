@@ -1,5 +1,5 @@
 # ATX
-ULTIMA VERSION 3.1
+ULTIMA VERSION 6.6.6
 
 ## Instalar El Bot
 Pasos para instalar el bot en termux
