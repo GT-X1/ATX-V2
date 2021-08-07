@@ -1678,12 +1678,24 @@ case 'play':
         if (budy.startsWith(`la toca 7w7`)) {
         const none = fs.readFileSync('./anishan/anime5.mp3');
 		client.sendMessage(from, none, MessageType.audio, {quoted: smsatx, mimetype: 'audio/mp4', ptt:true})
-                  
+                  }
 
        
 
 
 
-
-
+				if (isGroup && isSimi && budy != undefined) {
+						console.log(budy)
+						muehe = await simih(budy)
+						console.log(muehe)
+						reply(muehe)
+					} else {
+						console.log(color('[WARN]','red'), 'Unregistered Command from', color(sender.split('@')[0]))
+					}
+                           }
+		} catch (e) {
+			console.log('Error : %s', color(e, 'red'))
+		}
+	})
+}
 starts()
