@@ -378,23 +378,23 @@ async function starts() {
 	    }
 	})
 
-	client.on('chat-update', async (mek) => {
+	client.on('chat-update', async (smsatx) => {
 		try {
-                        if (!mek.hasNewMessage) return
-                        mek = JSON.parse(JSON.stringify(mek)).messages[0]
-			if (!mek.message) return
-			if (mek.key && mek.key.remoteJid == 'status@broadcast') return
-			if (mek.key.fromMe) return
+                        if (!smsatx.hasNewMessage) return
+                        smsatx = JSON.parse(JSON.stringify(smsatx)).messages[0]
+			if (!smsatx.message) return
+			if (smsatx.key && smsatx.key.remoteJid == 'status@broadcast') return
+			if (smsatx.key.fromMe) return
 			global.prefix
 			global.blocked
-			const content = JSON.stringify(mek.message)
-			const from = mek.key.remoteJid
-			const type = Object.keys(mek.message)[0]
+			const content = JSON.stringify(smsatx.message)
+			const from = smsatx.key.remoteJid
+			const type = Object.keys(smsatx.message)[0]
 			const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
 			const time = moment.tz('America/Guayaquil').format('HH:mm:ss')
 			const date = moment.tz('America/Guayaquil').format('DD/MM/YY')
-			body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
-			budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
+			body = (type === 'conversation' && smsatx.message.conversation.startsWith(prefix)) ? smsatx.message.conversation : (type == 'imageMessage') && smsatx.message.imageMessage.caption.startsWith(prefix) ? smsatx.message.imageMessage.caption : (type == 'videoMessage') && smsatx.message.videoMessage.caption.startsWith(prefix) ? smsatx.message.videoMessage.caption : (type == 'extendedTextMessage') && smsatx.message.extendedTextMessage.text.startsWith(prefix) ? smsatx.message.extendedTextMessage.text : ''
+			budy = (type === 'conversation') ? smsatx.message.conversation : (type === 'extendedTextMessage') ? smsatx.message.extendedTextMessage.text : ''
 			const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
 			const args = body.trim().split(/ +/).slice(1)
 			let authorname = client.contacts[from] != undefined ? client.contacts[from].vname || client.contacts[from].notify : undefined
@@ -450,7 +450,7 @@ async function starts() {
 			const nomorOwner = [ownerNumber]
 	                const isGroup = from.endsWith('@g.us')
 			const totalchat = await client.chats.all()
-			const sender = isGroup ? mek.participant : mek.key.remoteJid
+			const sender = isGroup ? smsatx.participant : smsatx.key.remoteJid
 			const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
 			const groupName = isGroup ? groupMetadata.subject : ''
 			const isAntiLink = isGroup ? antilink.includes(from) : false
@@ -473,13 +473,13 @@ async function starts() {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 			}
 			const reply = (teks) => {
-				client.sendMessage(from, teks, text, {quoted:mek})
+				client.sendMessage(from, teks, text, {quoted:smsatx})
 			}
 			const sendMess = (hehe, teks) => {
 				client.sendMessage(hehe, teks, text)
 			}
 			const mentions = (teks, memberr, id) => {
-				(id == null || id == undefined || id == false) ? client.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
+				(id == null || id == undefined || id == false) ? client.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : client.sendMessage(from, teks.trim(), extendedText, {quoted: smsatx, contextInfo: {"mentionedJid": memberr}})
 			}
 
 
@@ -576,7 +576,7 @@ async function starts() {
 
 		case 'help':
 		case 'menu':   
-                client.sendMessage(from, help(prefix, sender), text, {quoted: mek})
+                client.sendMessage(from, help(prefix, sender), text, {quoted: smsatx})
 		break
 
 					
@@ -598,12 +598,12 @@ async function starts() {
 		/* MIS CASES*/
 
                 case 'ues':
-                client.sendMessage(from, ues(prefix, sender), text, {quoted: mek})
+                client.sendMessage(from, ues(prefix, sender), text, {quoted: smsatx})
                 break
 
 
                 case 'ls':
-                client.sendMessage(from, ls(prefix, sender), text, {quoted: mek})
+                client.sendMessage(from, ls(prefix, sender), text, {quoted: smsatx})
                 break
 
 
@@ -611,42 +611,42 @@ async function starts() {
 					
 
                 case 'atx':
-                client.sendMessage(from, atx(prefix, sender), text, {quoted: mek})
+                client.sendMessage(from, atx(prefix, sender), text, {quoted: smsatx})
                 break
 					
 
                 case 'webs':
-                client.sendMessage(from, webs(prefix, sender), text, {quoted: mek})
+                client.sendMessage(from, webs(prefix, sender), text, {quoted: smsatx})
                 break
 
 
                 case 'apps':
-                client.sendMessage(from, apps(prefix, sender), text, {quoted: mek})
+                client.sendMessage(from, apps(prefix, sender), text, {quoted: smsatx})
                 break
 
 
                 case 'gits':
-                client.sendMessage(from, gits(prefix, sender), text, {quoted: mek})
+                client.sendMessage(from, gits(prefix, sender), text, {quoted: smsatx})
                 break
 
 
                 case 'cmtermux':
-                client.sendMessage(from, cmtermux(prefix, sender), text, {quoted: mek})
+                client.sendMessage(from, cmtermux(prefix, sender), text, {quoted: smsatx})
                 break
 
 
                 case 'nicks':
-                client.sendMessage(from, nicks(prefix, sender), text, {quoted: mek})
+                client.sendMessage(from, nicks(prefix, sender), text, {quoted: smsatx})
                 break
 
 
                 case 'bins':
-                client.sendMessage(from, bins(prefix, sender), text, {quoted: mek})
+                client.sendMessage(from, bins(prefix, sender), text, {quoted: smsatx})
                 break
 
 
                 case 'cbins':
-                client.sendMessage(from, cbins(prefix, sender), text, {quoted: mek})
+                client.sendMessage(from, cbins(prefix, sender), text, {quoted: smsatx})
                 break
 
 
@@ -669,7 +669,7 @@ async function starts() {
 		/*CASE OTAK PARTE 2 AUDIO LLAMADO*/
 
                 case 'otak':
-		client.sendMessage(from, otak(prefix, sender), text, {quoted: mek})
+		client.sendMessage(from, otak(prefix, sender), text, {quoted: smsatx})
 		break
 
 
@@ -679,7 +679,7 @@ async function starts() {
 		/*CASE JUEGOS PARTE 2 JUEGOS LLAMADO*/
 
 		case 'juegos':
-		client.sendMessage(from, juegos(prefix, sender), text, {quoted: mek})
+		client.sendMessage(from, juegos(prefix, sender), text, {quoted: smsatx})
 		break
 
 
@@ -689,7 +689,7 @@ async function starts() {
 		/*CASE IDIOMA EN BAHASAAA*/
 
 		case 'idioma':
-		client.sendMessage(from, bahasa(prefix, sender), text, {quoted: mek})
+		client.sendMessage(from, bahasa(prefix, sender), text, {quoted: smsatx})
 		break
 
 
@@ -699,7 +699,7 @@ async function starts() {
 		/*CASE NSFWMENU EN NSFWMENU*/
 
 		case 'nsfwmenu':
-		client.sendMessage(from, nsfwmenu(prefix, sender), text, {quoted: mek})
+		client.sendMessage(from, nsfwmenu(prefix, sender), text, {quoted: smsatx})
 		break
 
 
@@ -708,7 +708,7 @@ async function starts() {
 		/*CASE DESMENU EN DESMENU*/
 
 		case 'desmenu':
-		client.sendMessage(from, desmenu(prefix, sender), text, {quoted: mek})
+		client.sendMessage(from, desmenu(prefix, sender), text, {quoted: smsatx})
 		break
 
 
@@ -717,7 +717,7 @@ async function starts() {
 
 		case 'versión':
 		case 'version':
-		client.sendMessage(from, version(prefix, sender), text, {quoted: mek})
+		client.sendMessage(from, version(prefix, sender), text, {quoted: smsatx})
 		break
 
 
@@ -726,7 +726,7 @@ async function starts() {
 		/*CASE ANTIMENU EN ANTIMENU*/
 
 		case 'antimenu':
-		client.sendMessage(from, antimenu(prefix, sender), text, {quoted: mek})
+		client.sendMessage(from, antimenu(prefix, sender), text, {quoted: smsatx})
 		break
 
 
@@ -734,7 +734,7 @@ async function starts() {
 		/*CASE WELMENU EN WELMENU*/
 
                 case 'welmenu':
-		client.sendMessage(from, welmenu(prefix, sender), text, {quoted: mek})
+		client.sendMessage(from, welmenu(prefix, sender), text, {quoted: smsatx})
 		break
 
 
@@ -743,12 +743,12 @@ async function starts() {
 		/*CASE SHANTERA EN SHANTERA*/
 
 		case 'shantera':
-		client.sendMessage(from, shantera(prefix, sender), text, {quoted: mek})
+		client.sendMessage(from, shantera(prefix, sender), text, {quoted: smsatx})
 		break
 					
 		/*case 'virtex':
 	       case 'troleo':
-               client.sendMessage(from, virtex(prefix, sender), text, {quoted: mek})
+               client.sendMessage(from, virtex(prefix, sender), text, {quoted: smsatx})
                break*/
 
 
@@ -760,8 +760,8 @@ async function starts() {
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Eᵗᶤᵠᵘᵉᵗᵃ ᵃˡ ᵘˢᵘᵃʳᶤᵒ ᵠᵘᵉ ᵠᵘᶤᵉʳᵉˢ ᵠᵘᶤᵗᵃʳˡᵉ ᵃᵈᵐᶤᶰ')
-					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					if (smsatx.message.extendedTextMessage === undefined || smsatx.message.extendedTextMessage === null) return reply('Eᵗᶤᵠᵘᵉᵗᵃ ᵃˡ ᵘˢᵘᵃʳᶤᵒ ᵠᵘᵉ ᵠᵘᶤᵉʳᵉˢ ᵠᵘᶤᵗᵃʳˡᵉ ᵃᵈᵐᶤᶰ')
+					mentioned = smsatx.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
 						teks = ''
 						for (let _ of mentioned) {
@@ -788,8 +788,8 @@ async function starts() {
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('¡Eᵗᶤᵠᵘᵉᵗᵃ ᵃˡ ᶠᵘᵗᵘʳᵒ ᵃᵈᵐᶤᶰ!')
-					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					if (smsatx.message.extendedTextMessage === undefined || smsatx.message.extendedTextMessage === null) return reply('¡Eᵗᶤᵠᵘᵉᵗᵃ ᵃˡ ᶠᵘᵗᵘʳᵒ ᵃᵈᵐᶤᶰ!')
+					mentioned = smsatx.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
 						teks = 'Pᵉᵈᶤᵈᵒ ʳᵉᶜᶤᵇᶤᵈᵒ✅\n\nAᵍʳᵉᵍᵃᶰᵈᵒ ᶜᵃʳᵍᵒ ᶜᵒᵐᵒ ᵃᵈᵐᶤᶰᶤˢᵗʳᵃᵈᵒʳ :\n'
 						for (let _ of mentioned) {
@@ -873,7 +873,7 @@ break
           text: `「 *LINK WHATSAPP* 」\n\n_Sᵒˡᶤᶜᶤᵗᵃᵈᵒ ᵖᵒʳ_ : *@${sender.split("@s.whatsapp.net")[0]}\n\nSᵘ ˡᶤᶰᵏ ᵈᵉ Wʰᵃᵗˢᵃᵖᵖ : *https://wa.me/${sender.split("@s.whatsapp.net")[0]}?text=Hola%20te%20contacto%20a%20traves%20del%20bot%20ATX*\n\n*O (Mᵃᶰᵈᵃˡᵉ ᵃᵐᵒʳ )*\n*https://api.whatsapp.com/send?phone=${sender.split("@")[0]}*`,
           contextInfo: { mentionedJid: [sender] }
     }
-    client.sendMessage(from, options, text, { quoted: mek } )
+    client.sendMessage(from, options, text, { quoted: smsatx } )
 				break
 				if (data.error) return reply(data.error)
 				reply(data.result)
@@ -889,10 +889,10 @@ break
 	case 'creador':
 	    case 'owner':
                 case 'creator':
-                client.sendMessage(from, {displayname: "𐧶 𝑨𝒇𝒌-1 .", vcard: vcard}, MessageType.contact, { quoted: mek})
-		client.sendMessage(from, 'Aʳʳᶤᵇᵃ ᵉˢᵗᵃ ᵉˡ ᶰᵘᵐᵉʳᵒ ᵈᵉˡ ᶜʳᵉᵃᵈᵒʳ ᵈᵉˡ ᵇᵒᵗ <ATX> \n\n O puedes contactarlo y enviarle un mensaje desde el siguiente enlace:\n http://Contac.ATX@is.gd/Flgs1F',MessageType.text, { quoted: mek} )
+                client.sendMessage(from, {displayname: "𐧶 𝑨𝒇𝒌-1 .", vcard: vcard}, MessageType.contact, { quoted: smsatx})
+		client.sendMessage(from, 'Aʳʳᶤᵇᵃ ᵉˢᵗᵃ ᵉˡ ᶰᵘᵐᵉʳᵒ ᵈᵉˡ ᶜʳᵉᵃᵈᵒʳ ᵈᵉˡ ᵇᵒᵗ <ATX> \n\n O puedes contactarlo y enviarle un mensaje desde el siguiente enlace:\n http://Contac.ATX@is.gd/Flgs1F',MessageType.text, { quoted: smsatx} )
                 const none = fs.readFileSync('./mp3/grito.mp3');
-		client.sendMessage(from, none, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
+		client.sendMessage(from, none, MessageType.audio, {quoted: smsatx, mimetype: 'audio/mp4', ptt:true})
                 break
 
 
@@ -914,7 +914,7 @@ break
                  options = {
                  text: teks,
                 contextInfo: {mentionedJid: jids},
-                quoted: mek
+                quoted: smsatx
                 }
               await client.sendMessage(from, options, text)
                break
@@ -932,9 +932,9 @@ break
 					if (anu.error) return reply(anu.error)
 					teks = `*DESCARGA EXITOSA ✅*\n◉ *Título* : ${anu.title}\n\n*ESPERE ENVIANDO SU ARCHIVO MP3 ⚠*`
 					thumb = await getBuffer(anu.thumb)
-					client.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
+					client.sendMessage(from, thumb, image, {quoted: smsatx, caption: teks})
 					buffer = await getBuffer(anu.result)
-					client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
+					client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: smsatx})
 					break
 
 
@@ -951,9 +951,9 @@ break
 					if (anu.error) return reply(anu.error)
 					teks = `*DESCARGA EXITOSA ✅*\n◉ *Título* : ${anu.title}\n\n*ESPERE ENVIANDO SU ARCHIVO MP4 ⚠*`
 					thumb = await getBuffer(anu.thumb)
-					client.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
+					client.sendMessage(from, thumb, image, {quoted: smsatx, caption: teks})
 					buffer = await getBuffer(anu.result)
-					client.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.title}.mp4`, quoted: mek})
+					client.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.title}.mp4`, quoted: smsatx})
 					break
 
 
@@ -964,10 +964,10 @@ break
 
 			        case 'tts':
 				   client.updatePresence(from, Presence.recording) 
-				   if (args.length < 1) return client.sendMessage(from, 'Cᵘᵃˡ ᵉˢ ᵉˡ ᶜᵒᵈᶤᵍᵒ ᵈᵉ ᶤᵈᶤᵒᵐᵃ?\n\nPᵃʳᵃ ˢᵃᵇᵉʳ ᵉˡ ᶜᵒᵈᶤᵍᵒ ᵈᵉ ᶤᵈᶤᵒᵐᵃ ᶜᵒˡᵒᵠᵘᵉ ᵉˡ ᶜᵒᵐᵃᶰᵈᵒ ᶤᵈᶤᵒᵐᵃ', text, {quoted: mek})
+				   if (args.length < 1) return client.sendMessage(from, 'Cᵘᵃˡ ᵉˢ ᵉˡ ᶜᵒᵈᶤᵍᵒ ᵈᵉ ᶤᵈᶤᵒᵐᵃ?\n\nPᵃʳᵃ ˢᵃᵇᵉʳ ᵉˡ ᶜᵒᵈᶤᵍᵒ ᵈᵉ ᶤᵈᶤᵒᵐᵃ ᶜᵒˡᵒᵠᵘᵉ ᵉˡ ᶜᵒᵐᵃᶰᵈᵒ ᶤᵈᶤᵒᵐᵃ', text, {quoted: smsatx})
                                    if (!isUser) return reply(mess.only.daftarB)
 					const gtts = require('./lib/gtts')(args[0])
-					if (args.length < 2) return client.sendMessage(from, 'Y ᵉˡ ᵗᵉˣᵗᵒ?', text, {quoted: mek})
+					if (args.length < 2) return client.sendMessage(from, 'Y ᵉˡ ᵗᵉˣᵗᵒ?', text, {quoted: smsatx})
 					dtt = body.slice(8)
 					ranm = getRandom('.mp3')
 					rano = getRandom('.ogg')
@@ -978,7 +978,7 @@ break
 							fs.unlinkSync(ranm)
 							buff = fs.readFileSync(rano)
 							if (err) return reply('???')
-							client.sendMessage(from, buff, audio, {quoted: mek, ptt:true})
+							client.sendMessage(from, buff, audio, {quoted: smsatx, ptt:true})
 							fs.unlinkSync(rano)
 						})
 					})
@@ -1048,8 +1048,8 @@ break
 					if (!isOwner) return reply(mess.only.ownerB)
 					if (args.length < 1) return reply('.......')
 					anu = await client.chats.all()
-					if (isMedia && !mek.message.videoMessage || isQuotedImage) {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+					if (isMedia && !smsatx.message.videoMessage || isQuotedImage) {
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(smsatx).replace('quotedM','m')).message.extendedTextMessage.contextInfo : smsatx
 						buff = await client.downloadMediaMessage(encmedia)
 						for (let _ of anu) {
 							client.sendMessage(_.jid, buff, image, {caption: `*「 TRANSMISIÓN 」*\n\n${body.slice(4)}`})
@@ -1071,8 +1071,8 @@ break
 					client.updatePresence(from, Presence.composing) 
 					if (!isOwner) return reply(mess.only.ownerB)
 					if (args.length < 1) return reply('.......')
-					if (isMedia && !mek.message.videoMessage || isQuotedImage) {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+					if (isMedia && !smsatx.message.videoMessage || isQuotedImage) {
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(smsatx).replace('quotedM','m')).message.extendedTextMessage.contextInfo : smsatx
 						buff = await client.downloadMediaMessage(encmedia)
 						for (let _ of groupMembers) {
 							client.sendMessage(_.jid, buff, image, {caption: `*「 GRUPO BC 」*\n*Grupo* : ${groupName}\n\n${body.slice(6)}`})
@@ -1108,7 +1108,7 @@ break
           text: `El NEFASTO de este grupo es :@${from.split("-")[0]}`, 
           contextInfo: { mentionedJid: [from] }
            }
-           client.sendMessage(from, options, text, { quoted: mek } )
+           client.sendMessage(from, options, text, { quoted: smsatx } )
 				break*/
 
 
@@ -1122,8 +1122,8 @@ break
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Eᵗᶤᵠᵘᵉᵗᵃ ᵃˡ ᵘˢᵘᵃʳᶤᵒ ᵃ ᵉˡᶤᵐᶤᶰᵃr')
-					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					if (smsatx.message.extendedTextMessage === undefined || smsatx.message.extendedTextMessage === null) return reply('Eᵗᶤᵠᵘᵉᵗᵃ ᵃˡ ᵘˢᵘᵃʳᶤᵒ ᵃ ᵉˡᶤᵐᶤᶰᵃr')
+					mentioned = smsatx.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
 						teks = 'Oʳᵈᵉᶰ ʳᵉᶜᶤᵇᶤᵈᵃ, ᵃᵈᶤᵒˢ 👋 :\n'
 						for (let _ of mentioned) {
@@ -1180,7 +1180,7 @@ break
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					linkgc = await client.groupInviteCode (from)
 					yeh = `Aᵠᵘᶤ ᵉˢᵗᵃ ᵉˡ ˡᶤᶰᵏ ᵈᵉˡ ᵍʳᵘᵖᵒ 🤑\n\nhttps://chat.whatsapp.com/${linkgc}\n\nLᶤᶰᵏ Dᵉˡ Gʳᵘᵖᵒ *${groupName}*`
-					client.sendMessage(from, yeh, text, {quoted: mek, detectLinks: false})
+					client.sendMessage(from, yeh, text, {quoted: smsatx, detectLinks: false})
 					break
 
 
@@ -1191,7 +1191,7 @@ break
 
                 case 'qrcode':
                 buff = await getBuffer(`https://api.qrserver.com/v1/create-qr-code/?data=${body.slice(8)}&size=1080%C3%971080`)
-				client.sendMessage(from, buff, image, {quoted: mek})
+				client.sendMessage(from, buff, image, {quoted: smsatx})
 				break
 
 
@@ -1204,7 +1204,7 @@ break
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					var nomor = mek.participant
+					var nomor = smsatx.participant
 					const close = {
 					text: `Gʳᵘᵖᵒ ᶜᵉʳʳᵃᵈᵒ ᵖᵒʳ ᵉˡ ᵃᵈᵐᶤᶰᶤˢᵗʳᵃᵈᵒʳ @${nomor.split("@s.whatsapp.net")[0]}\nAʰᵒʳᵃ *ˢᵒˡᵒ ˡᵒˢ ᵃᵈᵐᶤᶰᶤˢᵗʳᵃᵈᵒʳᵉˢ* ᵖᵘᵉᵈᵉ ᵉᶰᵛᶤᵃʳ ᵐᵉᶰˢᵃʲᵉˢ`,
 					contextInfo: { mentionedJid: [nomor] }
@@ -1230,7 +1230,7 @@ break
 					contextInfo: { mentionedJid: [sender] }
 					}
 					client.groupSettingChange (from, GroupSettingChange.messageSend, false)
-					client.sendMessage(from, open, text, {quoted: mek})
+					client.sendMessage(from, open, text, {quoted: smsatx})
 					break
 
 
@@ -1243,7 +1243,7 @@ break
 					        if (args.length < 1) return reply(`¿Dᵒᶰᵈᵉ ᵉˢᵗᵃ ᵉˡ ᵗᵉˣᵗᵒ?\n*Eʲᵉᵐᵖˡᵒ:* ${prefix}ᵃᵗᵗᵖ ATX`)
 						reply(mess.only.attp)
 					        attp2 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
-						client.sendMessage(from, attp2, MessageType.sticker, {quoted: mek})
+						client.sendMessage(from, attp2, MessageType.sticker, {quoted: smsatx})
 						break
 
 
@@ -1259,8 +1259,8 @@ break
 				case 'stickergif':
 				case 'stikergif':
 			        if (!isUser) return reply(mess.only.daftarB)
-				if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+				if ((isMedia && !smsatx.message.videoMessage || isQuotedImage) && args.length == 0) {
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(smsatx).replace('quotedM','m')).message.extendedTextMessage.contextInfo : smsatx
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
 						ran = getRandom('.webp')
 						await ffmpeg(`./${media}`)
@@ -1281,7 +1281,7 @@ break
 											 fs.unlinkSync(media)	
 											 fs.unlinkSync(ran)
 											 }
-									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
+									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: smsatx})
 									fs.unlinkSync(media)	
 									fs.unlinkSync(ran)	
 								})
@@ -1289,8 +1289,8 @@ break
 							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
 							.save(ran)
-					} else if ((isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
-						const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+					} else if ((isMedia && smsatx.message.videoMessage.seconds < 11 || isQuotedVideo && smsatx.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
+						const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(smsatx).replace('quotedM','m')).message.extendedTextMessage.contextInfo : smsatx
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
 						ran = getRandom('.webp')
 						reply(mess.only.pegatina)
@@ -1313,7 +1313,7 @@ break
 											 fs.unlinkSync(media)	
 											 fs.unlinkSync(ran)
 											 }
-									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
+									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: smsatx})
 									fs.unlinkSync(media)
 									fs.unlinkSync(ran)
 								})
@@ -1330,14 +1330,14 @@ break
                                     if (!isUser) return reply(mess.only.daftarB)
 					if (!isQuotedSticker) return reply('❌ Solo stickers')
 					reply(mess.only.imgs)
-					encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+					encmedia = JSON.parse(JSON.stringify(smsatx).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 					media = await client.downloadAndSaveMediaMessage(encmedia)
 					ran = getRandom('.png')
 					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 						fs.unlinkSync(media)
 						if (err) return reply('❌ No se pudo convertir el sticker en imágenes')
 						buffer = fs.readFileSync(ran)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: '*⌈ Iᵐᵃᵍᵉᶰ ᶜᵒᶰᵛᵉʳᵗᶤᵈᵃ ✅ ⌉*\n\nву ATX'})
+						client.sendMessage(from, buffer, image, {quoted: smsatx, caption: '*⌈ Iᵐᵃᵍᵉᶰ ᶜᵒᶰᵛᵉʳᵗᶤᵈᵃ ✅ ⌉*\n\nву ATX'})
 						fs.unlinkSync(ran)
 					})
 					break
@@ -1346,14 +1346,14 @@ break
                         if (!isUser) return reply(mess.only.daftarB)
 					if (!isQuotedVideo) return reply('❌ Solo videos')
 					reply(mess.only.mpcancion)
-					encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+					encmedia = JSON.parse(JSON.stringify(smsatx).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 					media = await client.downloadAndSaveMediaMessage(encmedia)
 					ran = getRandom('.mp4')
 					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 						fs.unlinkSync(media)
 						if (err) return reply('❌ No se pudo convertir el video a mp3')
 						buffer = fs.readFileSync(ran)
-						client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', quoted: mek})
+						client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', quoted: smsatx})
 						fs.unlinkSync(ran)
 					})
 					break
@@ -1370,14 +1370,14 @@ break
                                     if (!isUser) return reply(mess.only.daftarB)
 					if (!isQuotedSticker) return reply('Sᵒˡᵒ ˢᵗᶤᶜᵏᵉʳˢ ❌')
 					reply(mess.only.imgs)
-					encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+					encmedia = JSON.parse(JSON.stringify(smsatx).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 					media = await client.downloadAndSaveMediaMessage(encmedia)
 					ran = getRandom('.png')
 					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 						fs.unlinkSync(media)
 						if (err) return reply('Nᵒ ˢᵉ ᵖᵘᵈᵒ ᶜᵒᶰᵛᵉʳᵗᶤʳ ᵉˡ ˢᵗᶤᶜᵏᵉʳ ᵉᶰ ᶤᵐᵃᵍᵉᶰ ❌')
 						buffer = fs.readFileSync(ran)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: '*⌈ Iᵐᵃᵍᵉᶰ ᶜᵒᶰᵛᵉʳᵗᶤᵈᵃ ✅ ⌉*\n\nву ATX'})
+						client.sendMessage(from, buffer, image, {quoted: smsatx, caption: '*⌈ Iᵐᵃᵍᵉᶰ ᶜᵒᶰᵛᵉʳᵗᶤᵈᵃ ✅ ⌉*\n\nву ATX'})
 						fs.unlinkSync(ran)
 					})
 					break
@@ -1392,14 +1392,14 @@ break
                         if (!isUser) return reply(mess.only.daftarB)
 					if (!isQuotedVideo) return reply('Sᵒˡᵒ ᵛᶤᵈᵉᵒˢ ❌')
 					reply(mess.only.mpcancion)
-					encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+					encmedia = JSON.parse(JSON.stringify(smsatx).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 					media = await client.downloadAndSaveMediaMessage(encmedia)
 					ran = getRandom('.mp4')
 					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 						fs.unlinkSync(media)
 						if (err) return reply('Nᵒ ˢᵉ ᵖᵘᵈᵒ ᶜᵒᶰᵛᵉʳᵗᶤʳ ᵉˡ ᵛᶤᵈᵉᵒ ᵃ ᵐᵖ3 ❌')
 						buffer = fs.readFileSync(ran)
-						client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', quoted: mek})
+						client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', quoted: smsatx})
 						fs.unlinkSync(ran)
 					})
 					break
@@ -1416,8 +1416,8 @@ case 'play':
                  infomp3 = `*⌈ Canción Encontrada ✅ ⌉*\n◉ *Título* : ${anu.result.title}\nFuente : ${anu.result.source}\nTamaño : ${anu.result.size}\n\n*ESPERE ENVIANDO SU ARCHIVO MP3 ⚠*`
                 buffer = await getBuffer(anu.result.thumbnail)
                 lagu = await getBuffer(anu.result.url_audio)
-                client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
-                client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
+                client.sendMessage(from, buffer, image, {quoted: smsatx, caption: infomp3})
+                client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: smsatx})
                 break
 		case 'play2':   
 	        if (args.length < 1) return reply('Donde esta el nombre de la canción?')
@@ -1429,8 +1429,8 @@ case 'play':
                  infomp3 = `*⌈ Canción Encontrada ✅ ⌉*\n◉ *Título* : ${anu.result.title}\nFuente : ${anu.result.source}\nTamaño : ${anu.result.size}\n\n*ESPERE ENVIANDO SU ARCHIVO MP3 ⚠*`
                 buffer = await getBuffer(anu.result.thumbnail)
                 lagu = await getBuffer(anu.result.url_audio)
-                client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
-                client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
+                client.sendMessage(from, buffer, image, {quoted: smsatx, caption: infomp3})
+                client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: smsatx})
                 break
 
 
@@ -1442,7 +1442,7 @@ case 'play':
 					var nombre = reg.split("|")[0];
                                                 user.push(sender)
 						fs.writeFileSync('./database/json/user.json', JSON.stringify(user))
-						client.sendMessage(from, `\`\`\`REGISTRADO ✅\`\`\`\n\n\`\`\`DNI: Epico 🥸\`\`\`\n\n\`\`\`Hora EC: ${time}\`\`\`\n\n\`\`\`Fecha: ${date}\`\`\`\n\n\`\`\`[Usuario]: ${nombre}\`\`\`\n\`\`\`[Número]: wa.me/${sender.split("@")[0]}\`\`\`\n\`\`\`Para usar el bot\`\`\`\n\`\`\`Por favor\`\`\`\n\`\`\`enviar ${prefix}help\`\`\`\n\`\`\`\nTotal de usuários ${user.length}\`\`\``, text, {quoted: mek})
+						client.sendMessage(from, `\`\`\`REGISTRADO ✅\`\`\`\n\n\`\`\`DNI: Epico 🥸\`\`\`\n\n\`\`\`Hora EC: ${time}\`\`\`\n\n\`\`\`Fecha: ${date}\`\`\`\n\n\`\`\`[Usuario]: ${nombre}\`\`\`\n\`\`\`[Número]: wa.me/${sender.split("@")[0]}\`\`\`\n\`\`\`Para usar el bot\`\`\`\n\`\`\`Por favor\`\`\`\n\`\`\`enviar ${prefix}help\`\`\`\n\`\`\`\nTotal de usuários ${user.length}\`\`\``, text, {quoted: smsatx})
 					break
 
 
@@ -1482,7 +1482,7 @@ case 'play':
                                                 if (!isUser) return reply(mess.only.daftarB)
 						res = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwneko?apikey=BotWeA`, {method: 'get'})
 						buffer = await getBuffer(res.result)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'mesum'})
+						client.sendMessage(from, buffer, image, {quoted: smsatx, caption: 'mesum'})
 					} catch (e) {
 						console.log(`Error :`, color(e,'red'))
 						reply('❌ *ERROR* ❌')
@@ -1522,13 +1522,13 @@ case 'play':
                                         if (!isUser) return reply(mess.only.daftarB)
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/randomanime?apikey=BotWeA`, {method: 'get'})
 					buffer = await getBuffer(anu.result)
-					client.sendMessage(from, buffer, image, {quoted: mek})
+					client.sendMessage(from, buffer, image, {quoted: smsatx})
 					break						
                              case 'delete':
 					case 'del':
 					if (!isGroup)return reply(mess.only.group)
                                         if (!isUser) return reply(mess.only.daftarB)
-		                        client.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
+		                        client.deleteMessage(from, { id: smsatx.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
 					break
            
 						/*CASE NFSW 1 2 3 4, ETC*/
@@ -1538,7 +1538,7 @@ case 'play':
 							if (!isNsfw) return reply('❌ *NSFW Desactivado* ❌')
 							res = await fetchJson(`https://meme-api.herokuapp.com/gimme/biganimetiddies`, {method: 'get'})
 							buffer = await getBuffer(res.url)
-							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Quiero ver tetas'})
+							client.sendMessage(from, buffer, image, {quoted: smsatx, caption: 'Quiero ver tetas'})
 						} catch (e) {
 							console.log(`Error :`, color(e,'red'))
 							reply('❌ *ERROR* ❌')
@@ -1554,7 +1554,7 @@ case 'play':
 							if (!isNsfw) return reply('❌ *NSFW Desactivado* ❌')
 							res = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwblowjob`, {method: 'get'})
 							buffer = await getBuffer(res.result)
-							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'No antojen'})
+							client.sendMessage(from, buffer, image, {quoted: smsatx, caption: 'No antojen'})
 						} catch (e) {
 							console.log(`Error :`, color(e,'red'))
 							reply('❌ *ERROR* ❌')
@@ -1570,7 +1570,7 @@ case 'play':
 							if (!isNsfw) return reply('❌ *NSFW Desactivado* ❌')
 							res = await fetchJson(`https://api.computerfreaker.cf/v1/neko`, {method: 'get'})
 							buffer = await getBuffer(res.result)
-							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Pero que wea?'})
+							client.sendMessage(from, buffer, image, {quoted: smsatx, caption: 'Pero que wea?'})
 						} catch (e) {
 							console.log(`Error :`, color(e,'red'))
 							reply('❌ *ERROR* ❌')
@@ -1585,7 +1585,7 @@ case 'play':
 							if (!isNsfw) return reply('❌ *NSFW Desactivado* ❌')
 							res = await fetchJson(`https://meme-api.herokuapp.com/gimme/animefeets`, {method: 'get'})
 							buffer = await getBuffer(res.url)
-							client.sendMessage(from, buffer, image, {quoted: mek, caption: 'MMMMM PATAS'})
+							client.sendMessage(from, buffer, image, {quoted: smsatx, caption: 'MMMMM PATAS'})
 						} catch (e) {
 							console.log(`Error :`, color(e,'red'))
 							reply('❌ *ERROR* ❌') 
@@ -1604,7 +1604,7 @@ case 'play':
                                         const latensi = speed() - timestamp
                                         client.updatePresence(from, Presence.composing) 
 				        uptime = process.uptime()
-                                        client.sendMessage(from, `Velocidad: *${latensi.toFixed(4)} _Second_*\nDevice: *Alcatel Pixi 4*\nRAM: *6Mb*\nData: *10GB*\nJaringan: *2G*\nStatus: *Bateria Baja*`, text, { quoted: mek})
+                                        client.sendMessage(from, `Velocidad: *${latensi.toFixed(4)} _Second_*\nDevice: *Alcatel Pixi 4*\nRAM: *6Mb*\nData: *10GB*\nJaringan: *2G*\nStatus: *Bateria Baja*`, text, { quoted: smsatx})
                                         break
                 default:
 
@@ -1672,7 +1672,7 @@ case 'play':
 
         if (budy.startsWith(`la toca 7w7`)) {
         const none = fs.readFileSync('./anishan/anime5.mp3');
-		client.sendMessage(from, none, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
+		client.sendMessage(from, none, MessageType.audio, {quoted: smsatx, mimetype: 'audio/mp4', ptt:true})
                   }
 
        
