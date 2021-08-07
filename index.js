@@ -378,6 +378,12 @@ async function starts() {
 	    }
 	})
 
+
+
+
+
+
+
 	client.on('chat-update', async (smsatx) => {
 		try {
                         if (!smsatx.hasNewMessage) return
