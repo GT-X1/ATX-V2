@@ -1678,12 +1678,12 @@ case 'play':
         if (budy.startsWith(`la toca 7w7`)) {
         const none = fs.readFileSync('./anishan/anime5.mp3');
 		client.sendMessage(from, none, MessageType.audio, {quoted: smsatx, mimetype: 'audio/mp4', ptt:true})
-                  }
+                  
 
        
 
 
 
 
-}
+
 starts()
