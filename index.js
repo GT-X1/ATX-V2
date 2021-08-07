@@ -673,16 +673,6 @@ async function starts() {
 					
 					
 					
-					
-					
-					
-					
-		/*CASE OTAK PARTE 2 AUDIO LLAMADO*/
-
-                case 'otak':
-		client.sendMessage(from, otak(prefix, sender), text, {quoted: smsatx})
-		break
-
 
 
 
@@ -707,15 +697,6 @@ async function starts() {
 
 
 
-		/*CASE NSFWMENU EN NSFWMENU*/
-
-		case 'nsfwmenu':
-		client.sendMessage(from, nsfwmenu(prefix, sender), text, {quoted: smsatx})
-		break
-
-
-
-
 		/*CASE DESMENU EN DESMENU*/
 
 		case 'desmenu':
@@ -726,7 +707,7 @@ async function starts() {
 
 		/*CASE VERSION EN VERSION*/
 
-		case 'versión':
+	
 		case 'version':
 		client.sendMessage(from, version(prefix, sender), text, {quoted: smsatx})
 		break
@@ -756,11 +737,8 @@ async function starts() {
 		case 'shantera':
 		client.sendMessage(from, shantera(prefix, sender), text, {quoted: smsatx})
 		break
-					
-		/*case 'virtex':
-	       case 'troleo':
-               client.sendMessage(from, virtex(prefix, sender), text, {quoted: smsatx})
-               break*/
+
+
 
 
 
@@ -835,19 +813,6 @@ break
 
 
 
-
-/*CASE JUEGOS CUTIES?*/
-
-case 'cuties':
-if (!isUser) return reply(mess.only.daftarB)
-rate = body.slice(9)
-client.updatePresence(from, Presence.composing) 
-random = `${Math.floor(Math.random() * 100)}`
-cuties = random
-if (cuties < 20 ) {cu = 'Mi loco usted va para el cielo 👏'} else if (cuties == 21 ) {cu = 'Te salvaste ramirez 😎'} else if (cuties == 23 ) {cu = 'Te salvaste ramirez 😎'} else if (cuties == 24 ) {cu = 'Te salvaste ramirez 😎'} else if (cuties == 25 ) {cu = 'Te salvaste ramirez 😎'} else if (cuties == 26 ) {cu = 'Te salvaste ramirez 😎'} else if (cuties == 27 ) {cu = 'Te salvaste ramirez 😎'} else if (cuties == 28 ) {cu = 'Te salvaste ramirez 😎'} else if (cuties == 29 ) {cu = 'Te salvaste ramirez 😎'} else if (cuties == 30 ) {cu = 'Te salvaste ramirez 😎'} else if (cuties == 31 ) {cu = 'Ramirez que hace viendo cuties 🤔'} else if (cuties == 32 ) {cu = 'Ramirez que hace viendo cuties 🤔'} else if (cuties == 33 ) {cu = 'Ramirez que hace viendo cuties 🤔'} else if (cuties == 34 ) {cu = 'Ramirez que hace viendo cuties 🤔'} else if (cuties == 35 ) {cu = 'Ramirez que hace viendo cuties 🤔'} else if (cuties == 36 ) {cu = 'Ramirez que hace viendo cuties 🤔'} else if (cuties == 37 ) {cu = 'Ramirez que hace viendo cuties 🤔'} else if (cuties == 38 ) {cu = 'Ramirez que hace viendo cuties 🤔'} else if (cuties == 39 ) {cu = 'Ramirez que hace viendo cuties 🤔'} else if (cuties == 40 ) {cu = 'Ramirez que hace viendo cuties 🤔'} else if (cuties == 41 ) {cu = 'Mmm sospechoso ramirez 🧐'} else if (cuties == 42 ) {cu = 'Mmm sospechoso ramirez 🧐'} else if (cuties == 43 ) {cu = 'Mmm sospechoso ramirez 🧐'} else if (cuties == 44 ) {cu = 'Mmm sospechoso ramirez 🧐'} else if (cuties == 45 ) {cu = 'Mmm sospechoso ramirez 🧐'} else if (cuties == 46 ) {cu = 'Mmm sospechoso ramirez 🧐'} else if (cuties == 47 ) {cu = 'Mmm sospechoso ramirez 🧐'} else if (cuties == 48 ) {cu = 'Mmm sospechoso ramirez 🧐'} else if (cuties == 49 ) {cu = 'Mmm sospechoso ramirez 🧐'} else if (cuties == 50 ) {cu = 'Mmm sospechoso ramirez 🧐'} else if (cuties > 51) {cu = 'Señores un autentico FAN DE CUTIES esta en el grupo 🥸'}
-hasil = `${rate}Resultado ${random}% fan de cuties\n\n${cu}`
-reply(hasil)
-break
 		
 
 
@@ -909,6 +874,7 @@ break
 
 
 
+
     /*CASE HIDETAG*/
 
 	case 'hidetag':
@@ -936,7 +902,7 @@ break
                /*CASE YTMP 3*/
 
                                 case 'ytmp3':
-					if (args.length < 1) return reply('Donde esta la URL?')
+					if (args.length < 1) return reply('')
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
 					reply(mess.only.mpa)
 					anu = await fetchJson(`https://st4rz.herokuapp.com/api/yta2?url=${args[0]}`, {method: 'get'})
