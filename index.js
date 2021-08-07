@@ -902,7 +902,7 @@ break
                /*CASE YTMP 3*/
 
                                 case 'ytmp3':
-					if (args.length < 1) return reply('')
+					if (args.length < 1) return reply('Dᵒᶰᵈᵉ ᵉˢᵗᵃ ˡᵃ URL?')
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
 					reply(mess.only.mpa)
 					anu = await fetchJson(`https://st4rz.herokuapp.com/api/yta2?url=${args[0]}`, {method: 'get'})
@@ -921,7 +921,7 @@ break
 				/*CASE YTMP 4*/
 
 				case 'ytmp4':
-					if (args.length < 1) return reply('Donde esta la URL?')
+					if (args.length < 1) return reply('Dᵒᶰᵈᵉ ᵉˢᵗᵃ ˡᵃ URL?')
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
 					reply(mess.only.mpv)
 					anu = await fetchJson(`https://st4rz.herokuapp.com/api/ytv2?url=${args[0]}`, {method: 'get'})
@@ -963,6 +963,7 @@ break
 
 
 
+
 					/*CASE LISTADMINS*/
 
                 case 'listadmins':
@@ -970,7 +971,7 @@ break
 					client.updatePresence(from, Presence.composing) 
                                         if (!isUser) return reply(mess.only.daftarB)
 					if (!isGroup) return reply(mess.only.group)
-					teks = `Lista De Nefastos Del Grupo*${groupMetadata.subject}*\nTotal : ${groupAdmins.length}\n\n`
+					teks = `Lista De facheros Del Grupo*${groupMetadata.subject}*\nTotal : ${groupAdmins.length}\n\n`
 					no = 0
 					for (let admon of groupAdmins) {
 						no += 1
@@ -1062,31 +1063,6 @@ break
 						reply('Grupo de transmisión exitoso')
 					}
 					
-
-
-
-
-					
-                     case 'leave':
-                    if (!isGroup) return reply(mess.only.group)
-                    if (!isGroupAdmins) return reply(mess.only.admin)
-                     setTimeout( () => {
-					client.groupLeave (from) 
-					}, 2000)
-                     setTimeout( () => {
-					client.updatePresence(from, Presence.composing) 
-					client.sendMessage(from, 'Chao Pa👋', text) // ur cods
-					}, 0)
-                     break
-       /*case 'ownergrup':
-				  case 'ownergroup':
-               client.updatePresence(from, Presence.composing) 
-              options = {
-          text: `El NEFASTO de este grupo es :@${from.split("-")[0]}`, 
-          contextInfo: { mentionedJid: [from] }
-           }
-           client.sendMessage(from, options, text, { quoted: smsatx } )
-				break*/
 
 
 
