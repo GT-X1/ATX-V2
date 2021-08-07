@@ -1685,5 +1685,6 @@ case 'play':
 
 
 
+	})
 }
 starts()
